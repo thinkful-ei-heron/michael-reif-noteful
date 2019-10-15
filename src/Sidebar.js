@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
-//props:
-// folders: array of folder objects (usually)
-// folderId: on folder page, id of current folder
-// folderName: for Note page
 
 export default class Sidebar extends Component {
   static defaultProps = {

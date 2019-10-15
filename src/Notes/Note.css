@@ -1,6 +1,5 @@
 .note {
   border: 1px solid black;
-  /* width: 100%; */
   max-width: 800px;
   position: relative;
   padding: 1rem;
@@ -12,7 +11,6 @@
   background-color: white;
   padding: 0.25rem;
   display: inline-block;
-  /* width: fit-content; */
 
   position: absolute;
   right: 1rem;
