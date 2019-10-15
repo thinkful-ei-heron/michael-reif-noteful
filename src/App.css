@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font: calc(100% * 0.625) / 1.15 HelveticaNeue, Helvetica, sans-serif;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 99fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+#noteful-header {
+  grid-area: 1 / 1 / 2 / 2;
+  text-align: left;
+  padding-left: 20vw;
+  border-bottom: 1px solid black;
+}
+#main-content {
+  grid-area: 2 / 1 / 3 / 2;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+#sidebar-container {
+  margin-top: 1rem;
+  margin-left: 0.5vw;
+  grid-area: 1 / 1 / 1 / 1;
+  width: fit-content;
+}
+#noteslist-container {
+  grid-area: 1 / 2 / 1 / 2;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style: none;
+}

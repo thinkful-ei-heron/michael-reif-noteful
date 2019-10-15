@@ -9,6 +9,7 @@
     additional prop: full (false except on /note/id)
     */
 import React, { Component } from 'react';
+import './Note.css';
 
 export default class Note extends Component {
   static defaultProps = {
@@ -19,14 +20,13 @@ export default class Note extends Component {
     const date = new Date(Date.parse(note.modified)).toDateString().slice(4);
     let contentJsx = <p className='note-content'>{note.content}</p>;
     let noteJsx = (
-      <div className='note'>
+      <li className='note'>
         <h2>
           <a href={`/note/${note.id}`}>{note.name}</a>
         </h2>
         <p>Date modified: {date}</p>
-        <button type='button'>Delete Note ?NYI?</button>
-        {/* OOOHHHH not yet implemented */}
-      </div>
+        <button type='button'>Delete Note NYI</button>
+      </li>
     );
     if (this.props.full) {
       return (

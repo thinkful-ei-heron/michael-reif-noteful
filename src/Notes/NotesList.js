@@ -4,11 +4,11 @@ import Note from './Note';
 export default class NotesList extends Component {
   render() {
     return (
-      <div>
+      <ul id='noteslist-container'>
         {this.props.notes.map(item => (
           <Note note={item} full={false} key={item.id} />
         ))}
-      </div>
+      </ul>
     );
   }
 }

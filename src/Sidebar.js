@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './Sidebar.css';
 //props:
 // folders: array of folder objects (usually)
 // folderId: on folder page, id of current folder
@@ -15,7 +15,8 @@ export default class Sidebar extends Component {
         <>
           {this.props.folders.map(item => {
             return (
-              <section
+              <a
+                href={`/folder/${item.id}`}
                 className={
                   item.id === this.props.folderId
                     ? 'folder-list-item highlight'
@@ -24,24 +25,26 @@ export default class Sidebar extends Component {
                 key={item.id}
               >
                 <h3>{item.name}</h3>
-                <a href={`/folder/${item.id}`}>
-                  This will open the folder's notes
-                </a>
-              </section>
+              </a>
             );
           })}
-          <section>
-            <a href='/'>Add Folder</a>
-            {/* points to AddFolder Component... NYI */}
-          </section>
+          <a id='add-folder' href='/'>
+            Add Folder
+          </a>
         </>
       ) : (
-        <section>
-          {' '}
-          <h3>Go Back</h3>
-          <h2>{this.props.folderName}</h2>
-        </section>
+        <>
+          <button
+            id='go-back-button'
+            type='button'
+            onClick={this.props.history.goBack}
+          >
+            <h3>Go Back</h3>
+          </button>
+
+          <h2 id='folder-name-left'>{this.props.folderName}</h2>
+        </>
       );
-    return <section>{output}</section>;
+    return <section id='sidebar-container'>{output}</section>;
   }
 }

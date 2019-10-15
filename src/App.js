@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
+
 import dummyStore from './dummy-store';
+import './App.css';
+
 import Header from './Header';
 import Sidebar from './Sidebar';
 import NotesList from './Notes/NotesList';
@@ -19,9 +22,8 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <main className='App'>
-          <Header /> {/* constant */}
-          <section className='main-content'>
-            {/* Default to showing all notes */}
+          <Header />
+          <section id='main-content'>
             {/* https://tf-curricula-prod.s3.amazonaws.com/curricula/da13a510-00f5-4649-9416-c29d8f2f4761/ei-react-v1/assets2/react_routing/main-route-wireframe.png */}
             <Route
               exact
@@ -29,9 +31,7 @@ export default class App extends Component {
               component={() => (
                 <>
                   <Sidebar folders={this.state.folders} />
-                  {/* Needs props for folder list */}
                   <NotesList notes={this.state.notes} />
-                  {/* props for note list with all notes*/}
                 </>
               )}
             />
@@ -56,20 +56,19 @@ export default class App extends Component {
             <Route
               path='/note/:noteid'
               component={props => {
+                console.log(props);
                 const note = this.state.notes.find(
                   x => x.id === props.match.params.noteid
                 );
                 return (
                   <>
                     {console.log(props.match.params.noteid)}
-                    {/* 
-                  this.state.folders.find(x => x.id === this.state.notes.find(x => x.id === noteid)).name
-                   */}
                     <Sidebar
                       folderName={
                         this.state.folders.find(x => x.id === note.folderId)
                           .name
                       }
+                      history={props.history}
                     />
                     <Note full={true} note={note} />
                   </>
@@ -126,3 +125,20 @@ export default class App extends Component {
  *              and folder name
  *              replace main body with note + details
  */
+
+/* <Route
+path='/add-bookmark'
+
+-            render={() => <AddBookmark
+-              onAddBookmark={this.addBookmark}
+-              onClickCancel={() => {/* what here? /}}
+-            />}
+
++            render={({ history }) => {
++              console.log(history)
++              return <AddBookmark
++                onAddBookmark={this.addBookmark}
++                onClickCancel={() => {/* what here? /}}
++              />
++            }}
+/> */
