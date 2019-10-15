@@ -4,7 +4,9 @@ export default class Header extends Component {
   render() {
     return (
       <header id='noteful-header'>
-        <h1>Noteful</h1>
+        <h1>
+          <a href='/'>Noteful</a>
+        </h1>
       </header>
     );
   }

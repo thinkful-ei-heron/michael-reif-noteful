@@ -5,6 +5,7 @@ import dummyStore from './dummy-store';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import NotesList from './Notes/NotesList';
+import Note from './Notes/Note';
 
 export default class App extends Component {
   constructor() {
@@ -21,17 +22,61 @@ export default class App extends Component {
           <Header /> {/* constant */}
           <section className='main-content'>
             {/* Default to showing all notes */}
+            {/* https://tf-curricula-prod.s3.amazonaws.com/curricula/da13a510-00f5-4649-9416-c29d8f2f4761/ei-react-v1/assets2/react_routing/main-route-wireframe.png */}
             <Route
-              path='/folder/:folderid'
+              exact
+              path='/'
               component={() => (
                 <>
-                  <Sidebar />
-                  <NotesList />
+                  <Sidebar folders={this.state.folders} />
+                  {/* Needs props for folder list */}
+                  <NotesList notes={this.state.notes} />
+                  {/* props for note list with all notes*/}
                 </>
               )}
             />
-            {/* Sidebar relies on route/props,  :folderid/:noteid */}
-            {/* NotesList relies on route/props, :folderid + folder */}
+            {/* https://tf-curricula-prod.s3.amazonaws.com/curricula/da13a510-00f5-4649-9416-c29d8f2f4761/ei-react-v1/assets2/react_routing/folder-route-wireframe.png */}
+            <Route
+              path='/folder/:folderid'
+              component={props => (
+                <>
+                  <Sidebar
+                    folders={this.state.folders}
+                    folderId={props.match.params.folderid}
+                  />
+                  <NotesList
+                    notes={this.state.notes.filter(
+                      x => x.folderId === props.match.params.folderid
+                    )}
+                  />
+                </>
+              )}
+            />
+            {/* https://tf-curricula-prod.s3.amazonaws.com/curricula/da13a510-00f5-4649-9416-c29d8f2f4761/ei-react-v1/assets2/react_routing/note-route-wireframe.png */}
+            <Route
+              path='/note/:noteid'
+              component={props => {
+                const note = this.state.notes.find(
+                  x => x.id === props.match.params.noteid
+                );
+                return (
+                  <>
+                    {console.log(props.match.params.noteid)}
+                    {/* 
+                  this.state.folders.find(x => x.id === this.state.notes.find(x => x.id === noteid)).name
+                   */}
+                    <Sidebar
+                      folderName={
+                        this.state.folders.find(x => x.id === note.folderId)
+                          .name
+                      }
+                    />
+                    <Note full={true} note={note} />
+                  </>
+                );
+              }}
+            />
+            <Route path='/add_folder' />
           </section>
         </main>
       </BrowserRouter>
