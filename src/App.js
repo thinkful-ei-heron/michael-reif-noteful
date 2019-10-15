@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-
 import dummyStore from './dummy-store';
 import './App.css';
-
 import Header from './Header';
 import Sidebar from './Sidebar';
 import NotesList from './Notes/NotesList';
