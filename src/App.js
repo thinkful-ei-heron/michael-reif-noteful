@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import dummyStore from './dummy-store';
+
 import './App.css';
+
 import Header from './Header';
 import Sidebar from './Sidebar';
 import NotesList from './Notes/NotesList';
@@ -57,7 +59,7 @@ export default class App extends Component {
                 );
                 return (
                   <>
-                    {console.log(props.match.params.noteid)}
+                    {/* {console.log(props.match.params.noteid)} */}
                     <Sidebar
                       folderName={
                         this.state.folders.find(x => x.id === note.folderId)

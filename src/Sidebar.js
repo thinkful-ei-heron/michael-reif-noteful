@@ -7,6 +7,7 @@ export default class Sidebar extends Component {
   };
   render() {
     const output =
+      // check if folderName prop was passed in
       this.props.folderName === '' ? (
         <>
           {this.props.folders.map(item => {
@@ -37,7 +38,6 @@ export default class Sidebar extends Component {
           >
             <h3>Go Back</h3>
           </button>
-
           <h2 id='folder-name-left'>{this.props.folderName}</h2>
         </>
       );
